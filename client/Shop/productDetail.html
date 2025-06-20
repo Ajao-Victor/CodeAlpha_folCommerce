@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folcommerce - Product Detail</title>
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="stylesheet" href="../cssFiles/productDetails.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <header class="nav">
+        <nav class="container">
+            <div class="logo-section">
+                <img src="../logo.png" alt="Folcommerce Logo" class="logo">
+            </div>
+            <div id="hamburger" onclick="toggleMenu()">
+                <div></div><div></div><div></div>
+            </div>
+            <ul id="nav-links">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="./services.html">Services</a></li>
+                <li><a href="./cart.html"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="content">
+        <section class="product-detail animate__animated animate__fadeIn">
+            <div class="container">
+                <div id="loading">Loading product...</div>
+                <div id="product-content" style="display: none;">
+                    <div class="product-grid">
+                        <div class="product-image">
+                            <img id="product-img" src="" alt="Product">
+                        </div>
+                        <div class="product-info">
+                            <h1 id="product-name"></h1>
+                            <p id="product-price"></p>
+                            <p id="product-description"></p>
+                            <div class="quantity-control">
+                                <label for="quantity">Quantity:</label>
+                                <input type="number" id="quantity" min="1" value="1">
+                            </div>
+                            <button class="cta-button" onclick="addToCart()">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <p id="error" style="color: #d9534f; text-align: center; display: none;"></p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>About Folcommerce</h3>
+                <p>Folcommerce is your trusted e-commerce platform, delivering quality products and exceptional service across Nigeria.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:support@folcommerce.com">support@folcommerce.com</a></p>
+                <p>Phone: <a href="tel:+2349131109245">+234 913 110 9245</a></p>
+                <p>Address: Osun State, Nigeria</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://x.com"><i class="fab fa-twitter"></i></a>
+                    <a href="https://github.com"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© <script>document.write(new Date().getYear());</script> Folcommerce. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        const token = localStorage.getItem('token');
+    if (!token) {
+      window.location.href = 'index.html';
+    }
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const nav = document.querySelector('.nav');
+            navLinks.classList.toggle('active');
+            nav.classList.toggle('active');
+            navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
+        }
+
+        window.addEventListener('resize', () => {
+            const navLinks = document.getElementById('nav-links');
+            const hamburger = document.getElementById('hamburger');
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove('active');
+                nav.classList.remove('active');
+                navLinks.style.display = 'flex';
+                hamburger.style.display = 'none';
+            } else {
+                navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
+                hamburger.style.display = 'block';
+            }
+        });
+
+        function fetchProduct() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            if (!productId) {
+                showError('Product ID missing.');
+                return;
+            }
+            fetch(`http://localhost:3000/products/${productId}`)
+                .then(res => {
+                    if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
+                    return res.json();
+                })
+                .then(product => {
+                    document.getElementById('product-name').textContent = product.title;
+                    document.getElementById('product-price').textContent = `₦${product.price.toLocaleString()}`;
+                    document.getElementById('product-description').textContent = product.description;
+                    document.getElementById('product-img').src = product.image_url;
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('product-content').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error fetching product:', error);
+                    showError('Failed to load product.');
+                });
+        }
+
+        function showError(message) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('error').textContent = message;
+            document.getElementById('error').style.display = 'block';
+        }
+
+        function addToCart() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                alert('Please sign in to add items to cart.');
+                window.location.href = 'registration.html';
+                return;
+            }
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = parseInt(urlParams.get('id'));
+            const quantity = parseInt(document.getElementById('quantity').value);
+            if (!productId || quantity < 1) {
+                alert('Invalid product or quantity.');
+                return;
+            }
+            fetch('http://localhost:3000/cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ productId, quantity })
+            })
+                .then(res => {
+                    if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
+                    return res.json();
+                })
+                .then(() => alert('Product added to cart!'))
+                .catch(error => {
+                    console.error('Error adding to cart:', error);
+                    alert('Failed to add to cart.');
+                });
+        }
+
+        fetchProduct();
+        window.dispatchEvent(new Event('resize'));
+    </script>
+</body>
+</html>

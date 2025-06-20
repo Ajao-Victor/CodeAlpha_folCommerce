@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folcommerce: Services</title>
+    <link rel="icon" type="image/png" href="./images/logo.png">
+    <link rel="stylesheet" href="../cssFiles/services.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="nav">
+        <nav>
+            <div class="logo-section">
+                <img src="../logo.png" alt="Folcommerce Logo" class="logo">
+            </div>
+            <div id="hamburger" onclick="toggleMenu()">
+                <div></div><div></div><div></div>
+            </div>
+            <ul id="nav-links">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About</a></li>
+                <li><a href="./products.html">Products</a></li>
+                <li><a href="./services.html" class="active">Services</a></li>
+                <li><a href="./registration.html">Sign In / Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+    <main class="content">
+        <section class="hero">
+            <h1>Our Services</h1>
+            <p>We are committed to serving you better. Learn about the services we provide to enhance your shopping experience with Folcommerce.</p>
+        </section>
+        <section class="services-section">
+            <h2>Services We Provide</h2>
+            <p>At Folcommerce, we are committed to delivering a seamless and enjoyable shopping experience. Our services are tailored to meet the diverse needs of our users, ensuring convenience, security, and satisfaction.</p>
+        </section>
+        <section class="services">
+            <h2>Why Choose Our Services?</h2>
+            <div class="services-grid">
+                <div class="service">
+                    <i class="fas fa-store"></i>
+                    <h3>Extensive Product Marketplace</h3>
+                    <p>Access a vast catalog of products, from fashion to electronics, sourced from trusted vendors to meet your everyday needs.</p>
+                </div>
+                <div class="service">
+                    <i class="fas fa-lock"></i>
+                    <h3>Secure Payment Solutions</h3>
+                    <p>Enjoy peace of mind with our encrypted payment gateways and multiple payment options, ensuring safe and reliable transactions.</p>
+                </div>
+                <div class="service">
+                    <i class="fas fa-cart-plus"></i>
+                    <h3>Personalized Cart Management</h3>
+                    <p>Easily manage your shopping cart, add or remove items, and save your favorite products for a streamlined checkout process.</p>
+                </div>
+                <div class="service">
+                    <i class="fas fa-user-headset"></i>
+                    <h3>24/7 Customer Support</h3>
+                    <p>Our dedicated support team is available around the clock to assist with inquiries, returns, and order tracking.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Folcommerce</h4>
+                <p>Folcommerce is your one-stop e-commerce platform, offering quality products and exceptional service to make shopping effortless and enjoyable.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="./products.html">Products</a></li>
+                    <li><a href="./services.html">Services</a></li>
+                    <li><a href="./auth.html">Sign In</a></li>
+                </ul>
+            </div>
+            <div>
+            <div class="footer-section">
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p>Email: <a href="mailto:support@folcommerce.com">support@folcommerce.com</a></p>
+                    <p>Phone: <a href="tel:+2349131109245">+234 913 110 9245</a></p>
+                    <p>Address: 123 Commerce St, Lagos, Nigeria</p>
+                </div>
+                <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://x.com"><i class="fab fa-twitter"></i></a>
+                    <a href="https://github.com"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© <script>document.write(new Date().getFullYear());</script> Folcommerce</p>
+        </div>
+    </footer>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const nav = document.querySelector('.nav');
+            navLinks.classList.toggle('active');
+            nav.classList.toggle('active');
+            navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
+        }
+
+        window.addEventListener('resize', () => {
+            const navLinks = document.getElementById('nav-links');
+            const hamburger = document.getElementById('hamburger');
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove('active');
+                nav.classList.remove('active');
+                navLinks.style.display = 'flex';
+                hamburger.style.display = 'none';
+            } else {
+                navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
+                hamburger.style.display = 'block';
+            }
+        });
+
+        window.dispatchEvent(new Event('resize'));
+    </script>
+</body>
+</html>

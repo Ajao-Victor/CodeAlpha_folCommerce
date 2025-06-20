@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In / Sign Up</title>
+  <link rel="stylesheet" href="../cssFiles/registration.css" />
+  <link rel="icon" type="image/png" href="../logo.png">
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h2 id="form-title">Sign In</h2>
+
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+
+      <button onclick="handleAuth()" id="auth-button">Sign In</button>
+      <p id="toggle-form">
+        Don't have an account? <a href="#" onclick="toggleForm()">Sign Up</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    let isSignIn = true;
+
+    function toggleForm() {
+      isSignIn = !isSignIn;
+      document.getElementById('form-title').innerText = isSignIn ? 'Sign In' : 'Sign Up';
+      document.getElementById('auth-button').innerText = isSignIn ? 'Sign In' : 'Sign Up';
+      document.getElementById('toggle-form').innerHTML = isSignIn
+        ? `Don't have an account? <a href="#" onclick="toggleForm()">Sign Up</a>`
+        : `Already have an account? <a href="#" onclick="toggleForm()">Sign In</a>`;
+    }
+
+    async function handleAuth() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if (!username || !password) {
+        alert('Please fill in both fields.');
+        return;
+      }
+
+      const endpoint = isSignIn ? '/signin' : '/signup';
+
+      try {
+        const response = await fetch(`http://localhost:3000${endpoint}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        if (!response.ok) {
+          const msg = await response.text();
+          throw new Error(msg || 'Request failed');
+        }
+
+        const data = await response.json();
+
+        if (isSignIn) {
+          localStorage.setItem('token', data.token);
+          window.location.href = 'shop.html';
+        } else {
+          alert('Account created! Please sign in.');
+          toggleForm();
+        }
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+  </script>
+</body>
+</html>

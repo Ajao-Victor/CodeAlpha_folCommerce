@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Folcommerce</title>
+    <link rel="icon" type="image/png" href="./logo.png">
+    <link rel="stylesheet" href="../cssFiles/contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="nav">
+        <nav>
+            <div class="logo-section">
+                <img src="../logo.png" alt="Folcommerce Logo" class="logo">
+            </div>
+            <div id="hamburger" onclick="toggleMenu()">
+                <div></div><div></div><div></div>
+            </div>
+            <ul id="nav-links">
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./about.html">About</a></li>
+                <!-- <li><a href="./products.html">Products</a></li> -->
+                <li><a href="./services.html">Services</a></li>
+                <li><a href="./contact.html" class="active">Contact</a></li>
+                <li><a href="./registration.html">Sign In / Sign Up</a></li>
+            </ul>
+        </nav>
+    </div>
+    <main class="content">
+        <section class="hero">
+            <h1>Contact Us</h1>
+            <p>We're here to help! Reach out for support, inquiries, or to connect with the Folcommerce team and developer.</p>
+        </section>
+        <section class="contact-section">
+            <h2>Get in Touch</h2>
+            <p>Whether you need assistance with the Folcommerce app or want to share feedback, our team and developer is ready to support you. Contact us via WhatsApp or use the details below.</p>
+            <div class="contact-container">
+                <div class="contact-whatsapp">
+                    <h3>Send a Message via WhatsApp</h3>
+                    <p>Please include your <strong>full name</strong>, <strong>email</strong>, and <strong>message</strong> when contacting us to ensure we can assist you promptly.</p>
+                    <a href="https://wa.link/xrf4ba" class="whatsapp-button" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Contact Us on WhatsApp
+                    </a>
+                </div>
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <ul>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <p>Email: <a href="mailto:support@folcommerce.com">support@folcommerce.com</a></p>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <p>Phone: <a href="tel:+2349131109245">+234 913 110 9245</a></p>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Address: Osun state, Nigeria</p>
+                        </li>
+                    </ul>
+                    <h3>Developer Support</h3>
+                    <p>For technical inquiries or app-related issues, contact our developer team via email or follow us on social media for updates.</p>
+                    <div class="social-links">
+                        <a href="https://x.com"><i class="fab fa-twitter"></i></a>
+                        <a href="https://github.com"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Folcommerce</h3>
+                <p>Folcommerce is your one-stop e-commerce platform, offering quality products and exceptional service to make shopping effortless and enjoyable.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <!-- <li><a href="./products.html">Products</a></li> -->
+                    <li><a href="./services.html">Services</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                    <li><a href="./registration.html">Sign In / Sign Up</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:support@folcommerce.com">support@folcommerce.com</a></p>
+                <p>Phone: <a href="tel:+2349131109245">+234 913 110 9245</a></p>
+                <p>Address: 123 Commerce St, Lagos, Nigeria</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://x.com"><i class="fab fa-twitter"></i></a>
+                    <a href="https://github.com"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© <script>document.write(new Date().getFullYear());</script> Folcommerce. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const nav = document.querySelector('.nav');
+            navLinks.classList.toggle('active');
+            nav.classList.toggle('active');
+            navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
+        }
+
+        window.addEventListener('resize', () => {
+            const navLinks = document.getElementById('nav-links');
+            const hamburger = document.getElementById('hamburger');
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove('active');
+                nav.classList.remove('active');
+                navLinks.style.display = 'flex';
+                hamburger.style.display = 'none';
+            } else {
+                navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
+                hamburger.style.display = 'block';
+            }
+        });
+
+        window.dispatchEvent(new Event('resize'));
+    </script>
+</body>
+</html>

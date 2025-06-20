@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folcommerce Products</title>
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="stylesheet" href="../cssFiles/products.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="nav">
+        <nav style="background-color: #228838; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; font-family: Arial, sans-serif;">
+            <!-- Logo Section -->
+            <div style="display: flex; align-items: center;">
+                <img src="../logo.png" alt="Logo" style="height: 40px; width: auto; margin-right: 10px;">
+            </div>
+    
+            <!-- Hamburger Menu for Mobile -->
+            <div style="display: none; cursor: pointer;" id="hamburger" onclick="toggleMenu()">
+                <div style="width: 30px; height: 3px; background-color: #fff; margin: 6px 0; transition: 0.4s;"></div>
+                <div style="width: 30px; height: 3px; background-color: #fff; margin: 6px 0; transition: 0.4s;"></div>
+                <div style="width: 30px; height: 3px; background-color: #fff; margin: 6px 0; transition: 0.4s;"></div>
+            </div>
+    
+           
+            <ul id="nav-links" style="list-style: none; margin: 0; padding: 0; display: flex; gap: 20px;">
+                <li><a href="./index.html" style="color: #fff; text-decoration: none; font-size: 16px; padding: 10px; transition: color 0.3s;">Home</a></li>
+                <li><a href="./about.html" style="color: #fff; text-decoration: none; font-size: 16px; padding: 10px; transition: color 0.3s;">About</a></li>
+                <li><a href="./services.html" style="color: #fff; text-decoration: none; font-size: 16px; padding: 10px; transition: color 0.3s;">Services</a></li>
+                <li><a href="./cart.html" style="color: #fff; text-decoration: none; font-size: 16px; padding: 10px; transition: color 0.3s;"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+                <li><a href="./contact.html" style="color: #fff; text-decoration: none; font-size: 16px; padding: 10px; transition: color 0.3s;">Contact</a></li>
+                <li onclick="logout()"><a href="./index.html" style="color: #fff; text-decoration: none; font-size: 16px; padding: 10px; transition: color 0.3s;">Logout</a></li>
+            </ul>
+        </nav>
+    
+        <style>
+            /* Inline CSS for navbar responsiveness */
+            a:hover { color: #1e90ff; }
+            @media screen and (max-width: 768px) {
+                #nav-links {
+                    display: none;
+                    flex-direction: column;
+                    width: 100%;
+                    background-color: #228838;
+                    padding: 20px;
+                    position: relative;
+                }
+                #nav-links.active {
+                    display: flex;
+                }
+                #nav-links li {
+                    margin: 10px 0;
+                }
+                #nav-links li a {
+                    color: #fff;
+                    text-decoration: none;
+                    font-size: 16px;
+                    padding: 10px;
+                    display: block;
+                }
+                #hamburger {
+                    display: block;
+                }
+                .content {
+                    transition: padding-top 0.3s;
+                }
+                .nav.active ~ .content {
+                    padding-top: 5px;
+                }
+            }
+            @media screen and (min-width: 769px) {
+                #nav-links {
+                    display: flex !important;
+                    position: static;
+                    background-color: transparent;
+                    padding: 0;
+                }
+                #nav-links li a {
+                    color: #fff;
+                    text-decoration: none;
+                    font-size: 16px;
+                    padding: 10px;
+                }
+                #hamburger {
+                    display: none;
+                }
+                .content {
+                    padding-top: 0 !important;
+                }
+            }
+        </style>
+    </div>
+    <div class="content">
+        <div style="position: sticky; top: 0px; z-index: 1; background-color: rgb(191, 214, 157); width: 100%; display: flex; justify-content: center; margin-bottom: 20px;">
+            <div class="search-container" style="width: 50%;">
+                <input type="text" id="search-input" placeholder="Search folcommerce">
+                <button id="search-button">Search</button>
+            </div>
+        </div>
+        <div id="products"></div>
+        <footer style="background-color: #228838; color: #fff; padding: 40px 20px; font-family: Arial, sans-serif; width: 100%; margin-top: 40px;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: 0 auto; gap: 20px;">
+                <!-- About Section -->
+                <div style="flex: 1; min-width: 200px;">
+                    <h3 style="font-size: 18px; margin-bottom: 15px; color: #1e90ff;">About Folcommerce</h3>
+                    <p style="font-size: 14px; line-height: 1.8; opacity: 0.9;">
+                        Folcommerce is your one-stop e-commerce platform, offering quality products and exceptional service to make shopping effortless and enjoyable.
+                    </p>
+                </div>
+                <!-- Quick Links Section -->
+                <div style="flex: 1; min-width: 200px;">
+                    <h3 style="font-size: 18px; margin-bottom: 15px; color: #1e90ff;">Quick Links</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 10px;">
+                            <a href="shop.html" style="color: #fff; text-decoration: none; font-size: 14px; transition: color 0.3s;">Home</a>
+                        </li>
+                        <li style="margin-bottom: 10px;">
+                            <a href="./about.html" style="color: #fff; text-decoration: none; font-size: 14px; transition: color 0.3s;">About</a>
+                        </li>
+                        <li style="margin-bottom: 10px;">
+                            <a href="./services.html" style="color: #fff; text-decoration: none; font-size: 14px; transition: color 0.3s;">Services</a>
+                        </li>
+                        <!-- <li style="margin-bottom: 10px;">
+                            <a href="#" style="color: #fff; text-decoration: none; font-size: 14px; transition: color 0.3s;">Portfolio</a>
+                        </li> -->
+                        <li style="margin-bottom: 10px;">
+                            <a href="./contact.html" style="color: #fff; text-decoration: none; font-size: 14px; transition: color 0.3s;">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Contact Info Section -->
+                <div style="flex: 1; min-width: 200px;">
+                    <h3 style="font-size: 18px; margin-bottom: 15px; color: #1e90ff;">Contact Us</h3>
+                    <p style="font-size: 14px; margin-bottom: 10px;">
+                        Email: <a href="mailto:victoroluwatimileyin3@gmail.com" style="color: #1e90ff; text-decoration: none;">support@folcommerce.com</a>
+                    </p>
+                    <p style="font-size: 14px; margin-bottom: 10px;">
+                        Phone: <a href="tel:+2349131109245" style="color: #1e90ff; text-decoration: none;">+234 913 110 9245</a>
+                    </p>
+                    <p style="font-size: 14px;">
+                        Address: Osun State, Nigeria
+                    </p>
+                </div>
+                <!-- Social Media Section -->
+                <div style="flex: 1; min-width: 200px;">
+                    <h3 style="font-size: 18px; margin-bottom: 15px; color: #1e90ff;">Follow Us</h3>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="https://www.linkedin.com/in/victor-ajao-970771253/" style="color: #fff; font-size: 20px; text-decoration: none; transition: color 0.3s;">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://github.com/Ajao-Victor" style="color: #fff; font-size: 20px; text-decoration: none; transition: color 0.3s;">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/victor-ajao-970771253/" style="color: #fff; font-size: 20px; text-decoration: none; transition: color 0.3s;">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Copyright Section -->
+            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.2); font-size: 14px; opacity: 0.8;">
+                © <script>document.write(new Date().getFullYear());</script> Folcommerce. All rights reserved.
+            </div>
+            <style>
+                footer a:hover { color: #1e90ff; }
+                @media screen and (max-width: 768px) {
+                    footer > div {
+                        flex-direction: column;
+                        align-items: center;
+                        text-align: center;
+                    }
+                    footer > div > div {
+                        margin-bottom: 20px;
+                    }
+                }
+            </style>
+        </footer>
+
+        <script>
+const token = localStorage.getItem('token');
+    if (!token) {
+      window.location.href = 'index.html';
+    }
+
+            let allProducts = [];
+            const userId = 1;
+
+            function toggleMenu() {
+                const navLinks = document.getElementById('nav-links');
+                const nav = document.querySelector('.nav');
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    nav.classList.remove('active');
+                    navLinks.style.display = 'none';
+                } else {
+                    navLinks.classList.add('active');
+                    nav.classList.add('active');
+                    navLinks.style.display = 'flex';
+                }
+            }
+
+            window.addEventListener('resize', () => {
+                const navLinks = document.getElementById('nav-links');
+                const hamburger = document.getElementById('hamburger');
+                const nav = document.querySelector('.nav');
+                if (window.innerWidth > 768) {
+                    navLinks.classList.remove('active');
+                    nav.classList.remove('active');
+                    navLinks.style.display = 'flex';
+                    hamburger.style.display = 'none';
+                } else {
+                    navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
+                    hamburger.style.display = 'block';
+                }
+            });
+
+            window.dispatchEvent(new Event('resize'));
+
+            function displayProducts(products) {
+    const container = document.getElementById('products');
+    container.innerHTML = '';
+    if (products.length === 0) {
+        container.innerHTML = '<p>No products found.</p>';
+        return;
+    }
+    products.forEach(product => {
+        const div = document.createElement('div');
+        div.className = 'product-card';
+        div.onclick = () => window.location.href = `productDetail.html?id=${product.id}`;
+        div.innerHTML = `
+            <img src="${product.image_url}" alt="${product.title}">
+            <h3>${product.title}</h3>
+            <p>₦${product.price.toLocaleString()}</p>
+            <button onclick="event.stopPropagation(); addToCart(${product.id})">Add to Cart</button>
+        `;
+        container.appendChild(div);
+    });
+}
+
+            fetch('http://localhost:3000/products')
+                .then(res => {
+                    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+                    return res.json();
+                })
+                .then(products => {
+                    allProducts = products;
+                    displayProducts(products);
+                })
+                .catch(error => {
+                    console.error('Error fetching products:', error);
+                    document.getElementById('products').innerHTML = '<p>Error loading products.</p>';
+                });
+
+            document.getElementById('search-button').addEventListener('click', () => {
+                const searchTerm = document.getElementById('search-input').value.trim().toLowerCase();
+                const filteredProducts = allProducts.filter(product =>
+                    product.title.toLowerCase().includes(searchTerm)
+                );
+                displayProducts(filteredProducts);
+            });
+
+
+            function addToCart(productId, quantity = 1) {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        alert('Please sign in to add items to cart.');
+        window.location.href = 'registration.html';
+        return;
+    }
+    fetch('http://localhost:3000/cart', {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ productId, quantity })
+    })
+        .then(res => {
+            if (!res.ok) throw new Error(`Failed to add to cart: ${res.status}`);
+            return res.json();
+        })
+        .then(() => alert('Product added to cart!'))
+        .catch(error => {
+            console.error('Error adding to cart:', error);
+            alert('Failed to add to cart. Please try again.');
+        });
+}
+
+function logout() {
+    localStorage.removeItem("token");
+}
+        </script>
+    </div>
+</body>
+</html>
