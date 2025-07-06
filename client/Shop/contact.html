@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Folcommerce</title>
-    <link rel="icon" type="image/png" href="./logo.png">
+    <title>Folcommerce - Contact</title>
+    <link rel="icon" type="image/png" href="../logo.png">
     <link rel="stylesheet" href="../cssFiles/contact.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <div class="nav">
-        <nav>
+    <header class="nav">
+        <nav class="container">
             <div class="logo-section">
                 <img src="../logo.png" alt="Folcommerce Logo" class="logo">
             </div>
@@ -18,32 +20,56 @@
                 <div></div><div></div><div></div>
             </div>
             <ul id="nav-links">
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./about.html">About</a></li>
-                <!-- <li><a href="./products.html">Products</a></li> -->
-                <li><a href="./services.html">Services</a></li>
-                <li><a href="./contact.html" class="active">Contact</a></li>
-                <li><a href="./registration.html">Sign In / Sign Up</a></li>
+                <li><a href="./index.html" class="smooth-scroll">Home</a></li>
+                <li><a href="./about.html" class="smooth-scroll">About</a></li>
+                <!-- <li><a href="./shop.html" class="smooth-scroll">Products</a></li> -->
+                <li><a href="./services.html" class="smooth-scroll">Services</a></li>
+                <!-- <li><a href="./contact.html" class="smooth-scroll active">Contact</a></li> -->
+                <li><a href="./index.html" onclick="logout()" class="nav-cta">Logout</a></li>
             </ul>
         </nav>
-    </div>
+    </header>
     <main class="content">
-        <section class="hero">
-            <h1>Contact Us</h1>
-            <p>We're here to help! Reach out for support, inquiries, or to connect with the Folcommerce team and developer.</p>
+        <section class="hero" data-animate="hero">
+            <div class="hero-image">
+                <img src="https://images.pexels.com/photos/3184297/pexels-photo-3184297.jpeg" alt="Contact Us" loading="lazy" onerror="this.src='/images/contact-fallback.jpg'">
+            </div>
+            <div class="hero-text">
+                <h1>Contact Us</h1>
+                <p>We're here to assist! Reach out for support, inquiries, or to connect with the Folcommerce team.</p>
+            </div>
         </section>
-        <section class="contact-section">
+        <section class="contact-section" data-animate="contact">
             <h2>Get in Touch</h2>
-            <p>Whether you need assistance with the Folcommerce app or want to share feedback, our team and developer is ready to support you. Contact us via WhatsApp or use the details below.</p>
+            <p>Have questions or feedback? Contact us via WhatsApp, email, or the form below. Our team is ready to help you with any inquiries.</p>
             <div class="contact-container">
-                <div class="contact-whatsapp">
+                <div class="contact-whatsapp" data-animate="contact-card">
                     <h3>Send a Message via WhatsApp</h3>
-                    <p>Please include your <strong>full name</strong>, <strong>email</strong>, and <strong>message</strong> when contacting us to ensure we can assist you promptly.</p>
+                    <p>Please include your <strong>full name</strong>, <strong>email</strong>, and <strong>message</strong> for prompt assistance.</p>
                     <a href="https://wa.link/xrf4ba" class="whatsapp-button" target="_blank">
                         <i class="fab fa-whatsapp"></i> Contact Us on WhatsApp
                     </a>
                 </div>
-                <div class="contact-info">
+                <div class="contact-form" data-animate="contact-card">
+                    <h3>Send Us a Message</h3>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="Your email address">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required placeholder="Your message"></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Send Message</button>
+                        <p id="form-message" class="form-message"></p>
+                    </form>
+                </div>
+                <div class="contact-info" data-animate="contact-card">
                     <h3>Contact Information</h3>
                     <ul>
                         <li>
@@ -56,22 +82,21 @@
                         </li>
                         <li>
                             <i class="fas fa-map-marker-alt"></i>
-                            <p>Address: Osun state, Nigeria</p>
+                            <p>Address: Osun State, Nigeria</p>
                         </li>
                     </ul>
-                    <h3>Developer Support</h3>
-                    <p>For technical inquiries or app-related issues, contact our developer team via email or follow us on social media for updates.</p>
+                    <h3>Follow Us</h3>
                     <div class="social-links">
                         <a href="https://x.com"><i class="fab fa-twitter"></i></a>
-                        <a href="https://github.com"><i class="fab fa-github"></i></a>
-                        <a href="https://linkedin.com"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/Ajao-Victor/CodeAlpha_folConnect"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/victor-ajao-970771253"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-    <footer>
-        <div class="footer-content">
+    <footer id="contact">
+        <div class="container footer-content">
             <div class="footer-section">
                 <h3>About Folcommerce</h3>
                 <p>Folcommerce is your one-stop e-commerce platform, offering quality products and exceptional service to make shopping effortless and enjoyable.</p>
@@ -79,26 +104,25 @@
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="./index.html">Home</a></li>
-                    <li><a href="./about.html">About</a></li>
-                    <!-- <li><a href="./products.html">Products</a></li> -->
-                    <li><a href="./services.html">Services</a></li>
-                    <li><a href="./contact.html">Contact</a></li>
-                    <li><a href="./registration.html">Sign In / Sign Up</a></li>
+                    <li><a href="./index.html" class="smooth-scroll">Home</a></li>
+                    <li><a href="./about.html" class="smooth-scroll">About</a></li>
+                    <li><a href="./products.html" class="smooth-scroll">Products</a></li>
+                    <li><a href="./services.html" class="smooth-scroll">Services</a></li>
+                    <li><a href="./contact.html" class="smooth-scroll">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Contact Us</h3>
                 <p>Email: <a href="mailto:support@folcommerce.com">support@folcommerce.com</a></p>
                 <p>Phone: <a href="tel:+2349131109245">+234 913 110 9245</a></p>
-                <p>Address: 123 Commerce St, Lagos, Nigeria</p>
+                <p>Address: Osun State, Nigeria</p>
             </div>
             <div class="footer-section">
                 <h3>Follow Us</h3>
                 <div class="social-links">
                     <a href="https://x.com"><i class="fab fa-twitter"></i></a>
-                    <a href="https://github.com"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Ajao-Victor/CodeAlpha_folConnect"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/victor-ajao-970771253"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
         </div>
@@ -107,11 +131,18 @@
         </div>
     </footer>
     <script>
+        // const token = localStorage.getItem('token');
+        // if (!token) {
+        //     window.location.href = 'index.html';
+        // }
+
         function toggleMenu() {
             const navLinks = document.getElementById('nav-links');
             const nav = document.querySelector('.nav');
+            const hamburger = document.getElementById('hamburger');
             navLinks.classList.toggle('active');
             nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
             navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
         }
 
@@ -121,6 +152,7 @@
             if (window.innerWidth > 768) {
                 navLinks.classList.remove('active');
                 nav.classList.remove('active');
+                hamburger.classList.remove('active');
                 navLinks.style.display = 'flex';
                 hamburger.style.display = 'none';
             } else {
@@ -128,6 +160,126 @@
                 hamburger.style.display = 'block';
             }
         });
+
+        // GSAP Animations
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.fromTo('[data-animate="hero"]', {
+                opacity: 0,
+                y: 50,
+                scale: 0.95
+            }, {
+                scrollTrigger: {
+                    trigger: '[data-animate="hero"]',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.8,
+                ease: 'power3.out',
+                onStart: () => console.log('Animating hero section')
+            });
+
+            gsap.fromTo('[data-animate="contact"]', {
+                opacity: 0,
+                y: 50
+            }, {
+                scrollTrigger: {
+                    trigger: '[data-animate="contact"]',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: 0.2,
+                ease: 'power3.out',
+                onStart: () => console.log('Animating contact section')
+            });
+
+            gsap.utils.toArray('[data-animate="contact-card"]').forEach((element, i) => {
+                gsap.fromTo(element, {
+                    opacity: 0,
+                    y: 50,
+                    scale: 0.95
+                }, {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.8,
+                    delay: i * 0.15,
+                    ease: 'power3.out',
+                    onStart: () => console.log(`Animating contact card ${i}`)
+                });
+            });
+        }
+
+        // Fallback CSS Animation for No-JS
+        const style = document.createElement('style');
+        style.textContent = `
+            [data-animate="hero"], [data-animate="contact"], [data-animate="contact-card"] {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+            [data-animate="hero"].visible, [data-animate="contact"].visible, [data-animate="contact-card"].visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Ensure visibility on load
+        window.addEventListener('load', () => {
+            document.querySelectorAll('[data-animate="hero"], [data-animate="contact"], [data-animate="contact-card"]').forEach((item, i) => {
+                setTimeout(() => item.classList.add('visible'), i * 200);
+            });
+        });
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+            fetch('http://localhost:3000/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(res => {
+                    if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
+                    return res.json();
+                })
+                .then(data => {
+                    console.log('Form submission response:', data);
+                    formMessage.textContent = 'Message sent successfully!';
+                    formMessage.className = 'form-message success';
+                    contactForm.reset();
+                })
+                .catch(error => {
+                    console.error('Error submitting form:', error);
+                    formMessage.textContent = 'Failed to send message. Please try again.';
+                    formMessage.className = 'form-message error';
+                });
+        });
+
+        function logout() {
+            localStorage.removeItem('token');
+        }
 
         window.dispatchEvent(new Event('resize'));
     </script>

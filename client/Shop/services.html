@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Folcommerce: Services</title>
-    <link rel="icon" type="image/png" href="./images/logo.png">
+    <title>Folcommerce - Services</title>
+    <link rel="icon" type="image/png" href="../logo.png">
     <link rel="stylesheet" href="../cssFiles/services.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <div class="nav">
-        <nav>
+    <header class="nav">
+        <nav class="container">
             <div class="logo-section">
                 <img src="../logo.png" alt="Folcommerce Logo" class="logo">
             </div>
@@ -18,92 +20,103 @@
                 <div></div><div></div><div></div>
             </div>
             <ul id="nav-links">
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./about.html">About</a></li>
-                <li><a href="./products.html">Products</a></li>
-                <li><a href="./services.html" class="active">Services</a></li>
-                <li><a href="./registration.html">Sign In / Sign Up</a></li>
+                <li><a href="./index.html" class="smooth-scroll">Home</a></li>
+                <li><a href="./about.html" class="smooth-scroll">About</a></li>
+                <li><a href="./shop.html" class="smooth-scroll">Products</a></li>
+                <li><a href="./services.html" class="smooth-scroll active">Services</a></li>
+                <li><a href="./contact.html" class="smooth-scroll">Contact</a></li>
+                <li><a href="./index.html" onclick="logout()" class="nav-cta">Logout</a></li>
             </ul>
         </nav>
-    </div>
+    </header>
     <main class="content">
-        <section class="hero">
-            <h1>Our Services</h1>
-            <p>We are committed to serving you better. Learn about the services we provide to enhance your shopping experience with Folcommerce.</p>
+        <section class="hero" data-animate="hero">
+            <div class="hero-image">
+                <img src="https://images.pexels.com/photos/5632402/pexels-photo-5632402.jpeg" alt="Services Overview" loading="lazy" onerror="this.src='/images/services-fallback.jpg'">
+            </div>
+            <div class="hero-text">
+                <h1>Our Services</h1>
+                <p>Discover how Folcommerce enhances your shopping experience with seamless, secure, and personalized services tailored to your needs.</p>
+            </div>
         </section>
-        <section class="services-section">
-            <h2>Services We Provide</h2>
-            <p>At Folcommerce, we are committed to delivering a seamless and enjoyable shopping experience. Our services are tailored to meet the diverse needs of our users, ensuring convenience, security, and satisfaction.</p>
+        <section class="services-section" data-animate="services">
+            <h2>Our Commitment to You</h2>
+            <p>At Folcommerce, we prioritize your convenience and satisfaction. Our services are designed to make online shopping effortless, secure, and enjoyable, connecting you with trusted vendors across Nigeria.</p>
         </section>
-        <section class="services">
+        <section class="services" data-animate="services-grid">
             <h2>Why Choose Our Services?</h2>
             <div class="services-grid">
-                <div class="service">
+                <div class="service" data-animate="service">
                     <i class="fas fa-store"></i>
                     <h3>Extensive Product Marketplace</h3>
                     <p>Access a vast catalog of products, from fashion to electronics, sourced from trusted vendors to meet your everyday needs.</p>
                 </div>
-                <div class="service">
+                <div class="service" data-animate="service">
                     <i class="fas fa-lock"></i>
                     <h3>Secure Payment Solutions</h3>
-                    <p>Enjoy peace of mind with our encrypted payment gateways and multiple payment options, ensuring safe and reliable transactions.</p>
+                    <p>Shop with confidence using our encrypted payment gateways and multiple payment options for safe transactions.</p>
                 </div>
-                <div class="service">
+                <div class="service" data-animate="service">
                     <i class="fas fa-cart-plus"></i>
                     <h3>Personalized Cart Management</h3>
-                    <p>Easily manage your shopping cart, add or remove items, and save your favorite products for a streamlined checkout process.</p>
+                    <p>Easily manage your cart, add or remove items, and save favorites for a streamlined checkout process.</p>
                 </div>
-                <div class="service">
-                    <i class="fas fa-user-headset"></i>
+                <div class="service" data-animate="service">
+                    <i class="fas fa-headset"></i>
                     <h3>24/7 Customer Support</h3>
-                    <p>Our dedicated support team is available around the clock to assist with inquiries, returns, and order tracking.</p>
+                    <p>Our dedicated team is available around the clock to assist with inquiries, returns, and order tracking.</p>
                 </div>
             </div>
         </section>
     </main>
-    <footer>
-        <div class="footer-content">
+    <footer id="contact">
+        <div class="container footer-content">
             <div class="footer-section">
-                <h4>About Folcommerce</h4>
+                <h3>About Folcommerce</h3>
                 <p>Folcommerce is your one-stop e-commerce platform, offering quality products and exceptional service to make shopping effortless and enjoyable.</p>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="./index.html">Home</a></li>
-                    <li><a href="./about.html">About</a></li>
-                    <li><a href="./products.html">Products</a></li>
-                    <li><a href="./services.html">Services</a></li>
-                    <li><a href="./auth.html">Sign In</a></li>
+                    <li><a href="./index.html" class="smooth-scroll">Home</a></li>
+                    <li><a href="./about.html" class="smooth-scroll">About</a></li>
+                    <li><a href="./products.html" class="smooth-scroll">Products</a></li>
+                    <li><a href="./services.html" class="smooth-scroll">Services</a></li>
+                    <li><a href="./contact.html" class="smooth-scroll">Contact</a></li>
                 </ul>
             </div>
-            <div>
             <div class="footer-section">
-                <div class="footer-section">
-                    <h4>Contact Us</h4>
-                    <p>Email: <a href="mailto:support@folcommerce.com">support@folcommerce.com</a></p>
-                    <p>Phone: <a href="tel:+2349131109245">+234 913 110 9245</a></p>
-                    <p>Address: 123 Commerce St, Lagos, Nigeria</p>
-                </div>
-                <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:support@folcommerce.com">support@folcommerce.com</a></p>
+                <p>Phone: <a href="tel:+2349131109245">+234 913 110 9245</a></p>
+                <p>Address: Osun State, Nigeria</p>
+            </div>
+            <div class="footer-section">
                 <h3>Follow Us</h3>
                 <div class="social-links">
                     <a href="https://x.com"><i class="fab fa-twitter"></i></a>
-                    <a href="https://github.com"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Ajao-Victor/CodeAlpha_folConnect"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/victor-ajao-970771253"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© <script>document.write(new Date().getFullYear());</script> Folcommerce</p>
+            <p>© <script>document.write(new Date().getFullYear());</script> Folcommerce. All rights reserved.</p>
         </div>
     </footer>
     <script>
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'index.html';
+        }
+
         function toggleMenu() {
             const navLinks = document.getElementById('nav-links');
             const nav = document.querySelector('.nav');
+            const hamburger = document.getElementById('hamburger');
             navLinks.classList.toggle('active');
             nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
             navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
         }
 
@@ -113,6 +126,7 @@
             if (window.innerWidth > 768) {
                 navLinks.classList.remove('active');
                 nav.classList.remove('active');
+                hamburger.classList.remove('active');
                 navLinks.style.display = 'flex';
                 hamburger.style.display = 'none';
             } else {
@@ -120,6 +134,91 @@
                 hamburger.style.display = 'block';
             }
         });
+
+        // GSAP Animations
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.fromTo('[data-animate="hero"]', {
+                opacity: 0,
+                y: 50,
+                scale: 0.95
+            }, {
+                scrollTrigger: {
+                    trigger: '[data-animate="hero"]',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.8,
+                ease: 'power3.out',
+                onStart: () => console.log('Animating hero section')
+            });
+
+            gsap.fromTo('[data-animate="services"]', {
+                opacity: 0,
+                y: 50
+            }, {
+                scrollTrigger: {
+                    trigger: '[data-animate="services"]',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: 0.2,
+                ease: 'power3.out',
+                onStart: () => console.log('Animating services section')
+            });
+
+            gsap.utils.toArray('[data-animate="service"]').forEach((element, i) => {
+                gsap.fromTo(element, {
+                    opacity: 0,
+                    y: 50,
+                    scale: 0.95
+                }, {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.8,
+                    delay: i * 0.15,
+                    ease: 'power3.out',
+                    onStart: () => console.log(`Animating service ${i}`)
+                });
+            });
+        }
+
+        // Fallback CSS Animation for No-JS
+        const style = document.createElement('style');
+        style.textContent = `
+            [data-animate="hero"], [data-animate="services"], [data-animate="service"] {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+            [data-animate="hero"].visible, [data-animate="services"].visible, [data-animate="service"].visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Ensure visibility on load
+        window.addEventListener('load', () => {
+            document.querySelectorAll('[data-animate="hero"], [data-animate="services"], [data-animate="service"]').forEach((item, i) => {
+                setTimeout(() => item.classList.add('visible'), i * 200);
+            });
+        });
+
+        function logout() {
+            localStorage.removeItem('token');
+        }
 
         window.dispatchEvent(new Event('resize'));
     </script>

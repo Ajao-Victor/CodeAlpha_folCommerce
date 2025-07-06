@@ -7,290 +7,248 @@
     <link rel="icon" type="image/png" href="../logo.png">
     <link rel="stylesheet" href="../cssFiles/products.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <div class="nav">
-        <nav style="background-color: #228838; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; font-family: Arial, sans-serif;">
-            <!-- Logo Section -->
-            <div style="display: flex; align-items: center;">
-                <img src="../logo.png" alt="Logo" style="height: 40px; width: auto; margin-right: 10px;">
+    <header class="nav">
+        <nav class="container">
+            <div class="logo-section">
+                <img src="../logo.png" alt="Folcommerce Logo" class="logo">
             </div>
-    
-            <!-- Hamburger Menu for Mobile -->
-            <div style="display: none; cursor: pointer;" id="hamburger" onclick="toggleMenu()">
-                <div style="width: 30px; height: 3px; background-color: #fff; margin: 6px 0; transition: 0.4s;"></div>
-                <div style="width: 30px; height: 3px; background-color: #fff; margin: 6px 0; transition: 0.4s;"></div>
-                <div style="width: 30px; height: 3px; background-color: #fff; margin: 6px 0; transition: 0.4s;"></div>
+            <div id="hamburger" onclick="toggleMenu()">
+                <div></div><div></div><div></div>
             </div>
-    
-           
-            <ul id="nav-links" style="list-style: none; margin: 0; padding: 0; display: flex; gap: 20px;">
-                <li><a href="./index.html" style="color: #fff; text-decoration: none; font-size: 16px; padding: 10px; transition: color 0.3s;">Home</a></li>
-                <li><a href="./about.html" style="color: #fff; text-decoration: none; font-size: 16px; padding: 10px; transition: color 0.3s;">About</a></li>
-                <li><a href="./services.html" style="color: #fff; text-decoration: none; font-size: 16px; padding: 10px; transition: color 0.3s;">Services</a></li>
-                <li><a href="./cart.html" style="color: #fff; text-decoration: none; font-size: 16px; padding: 10px; transition: color 0.3s;"><i class="fas fa-shopping-cart"></i> Cart</a></li>
-                <li><a href="./contact.html" style="color: #fff; text-decoration: none; font-size: 16px; padding: 10px; transition: color 0.3s;">Contact</a></li>
-                <li onclick="logout()"><a href="./index.html" style="color: #fff; text-decoration: none; font-size: 16px; padding: 10px; transition: color 0.3s;">Logout</a></li>
+            <ul id="nav-links">
+                <!-- <li><a href="./index.html" class="smooth-scroll">Home</a></li> -->
+                <li><a href="./about.html" class="smooth-scroll">About</a></li>
+                <li><a href="./services.html" class="smooth-scroll">Services</a></li>
+                <li><a href="./cart.html" class="smooth-scroll"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+                <li><a href="./contact.html" class="smooth-scroll">Contact</a></li>
+                <li><a href="./index.html" onclick="logout()" class="nav-cta">Logout</a></li>
             </ul>
         </nav>
-    
-        <style>
-            /* Inline CSS for navbar responsiveness */
-            a:hover { color: #1e90ff; }
-            @media screen and (max-width: 768px) {
-                #nav-links {
-                    display: none;
-                    flex-direction: column;
-                    width: 100%;
-                    background-color: #228838;
-                    padding: 20px;
-                    position: relative;
-                }
-                #nav-links.active {
-                    display: flex;
-                }
-                #nav-links li {
-                    margin: 10px 0;
-                }
-                #nav-links li a {
-                    color: #fff;
-                    text-decoration: none;
-                    font-size: 16px;
-                    padding: 10px;
-                    display: block;
-                }
-                #hamburger {
-                    display: block;
-                }
-                .content {
-                    transition: padding-top 0.3s;
-                }
-                .nav.active ~ .content {
-                    padding-top: 5px;
-                }
-            }
-            @media screen and (min-width: 769px) {
-                #nav-links {
-                    display: flex !important;
-                    position: static;
-                    background-color: transparent;
-                    padding: 0;
-                }
-                #nav-links li a {
-                    color: #fff;
-                    text-decoration: none;
-                    font-size: 16px;
-                    padding: 10px;
-                }
-                #hamburger {
-                    display: none;
-                }
-                .content {
-                    padding-top: 0 !important;
-                }
-            }
-        </style>
-    </div>
-    <div class="content">
-        <div style="position: sticky; top: 0px; z-index: 1; background-color: rgb(191, 214, 157); width: 100%; display: flex; justify-content: center; margin-bottom: 20px;">
-            <div class="search-container" style="width: 50%;">
-                <input type="text" id="search-input" placeholder="Search folcommerce">
-                <button id="search-button">Search</button>
-            </div>
+    </header>
+    <main class="content">
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search Folcommerce">
+            <button id="search-button">Search</button>
         </div>
         <div id="products"></div>
-        <footer style="background-color: #228838; color: #fff; padding: 40px 20px; font-family: Arial, sans-serif; width: 100%; margin-top: 40px;">
-            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; max-width: 1200px; margin: 0 auto; gap: 20px;">
-                <!-- About Section -->
-                <div style="flex: 1; min-width: 200px;">
-                    <h3 style="font-size: 18px; margin-bottom: 15px; color: #1e90ff;">About Folcommerce</h3>
-                    <p style="font-size: 14px; line-height: 1.8; opacity: 0.9;">
-                        Folcommerce is your one-stop e-commerce platform, offering quality products and exceptional service to make shopping effortless and enjoyable.
-                    </p>
-                </div>
-                <!-- Quick Links Section -->
-                <div style="flex: 1; min-width: 200px;">
-                    <h3 style="font-size: 18px; margin-bottom: 15px; color: #1e90ff;">Quick Links</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 10px;">
-                            <a href="shop.html" style="color: #fff; text-decoration: none; font-size: 14px; transition: color 0.3s;">Home</a>
-                        </li>
-                        <li style="margin-bottom: 10px;">
-                            <a href="./about.html" style="color: #fff; text-decoration: none; font-size: 14px; transition: color 0.3s;">About</a>
-                        </li>
-                        <li style="margin-bottom: 10px;">
-                            <a href="./services.html" style="color: #fff; text-decoration: none; font-size: 14px; transition: color 0.3s;">Services</a>
-                        </li>
-                        <!-- <li style="margin-bottom: 10px;">
-                            <a href="#" style="color: #fff; text-decoration: none; font-size: 14px; transition: color 0.3s;">Portfolio</a>
-                        </li> -->
-                        <li style="margin-bottom: 10px;">
-                            <a href="./contact.html" style="color: #fff; text-decoration: none; font-size: 14px; transition: color 0.3s;">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Contact Info Section -->
-                <div style="flex: 1; min-width: 200px;">
-                    <h3 style="font-size: 18px; margin-bottom: 15px; color: #1e90ff;">Contact Us</h3>
-                    <p style="font-size: 14px; margin-bottom: 10px;">
-                        Email: <a href="mailto:victoroluwatimileyin3@gmail.com" style="color: #1e90ff; text-decoration: none;">support@folcommerce.com</a>
-                    </p>
-                    <p style="font-size: 14px; margin-bottom: 10px;">
-                        Phone: <a href="tel:+2349131109245" style="color: #1e90ff; text-decoration: none;">+234 913 110 9245</a>
-                    </p>
-                    <p style="font-size: 14px;">
-                        Address: Osun State, Nigeria
-                    </p>
-                </div>
-                <!-- Social Media Section -->
-                <div style="flex: 1; min-width: 200px;">
-                    <h3 style="font-size: 18px; margin-bottom: 15px; color: #1e90ff;">Follow Us</h3>
-                    <div style="display: flex; gap: 15px;">
-                        <a href="https://www.linkedin.com/in/victor-ajao-970771253/" style="color: #fff; font-size: 20px; text-decoration: none; transition: color 0.3s;">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="https://github.com/Ajao-Victor" style="color: #fff; font-size: 20px; text-decoration: none; transition: color 0.3s;">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/victor-ajao-970771253/" style="color: #fff; font-size: 20px; text-decoration: none; transition: color 0.3s;">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                    </div>
+    </main>
+    <footer id="contact">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>About Folcommerce</h3>
+                <p>Folcommerce is your one-stop e-commerce platform, offering quality products and exceptional service to make shopping effortless and enjoyable.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="./index.html" class="smooth-scroll">Home</a></li>
+                    <li><a href="./about.html" class="smooth-scroll">About</a></li>
+                    <li><a href="./services.html" class="smooth-scroll">Services</a></li>
+                    <li><a href="./contact.html" class="smooth-scroll">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: <a href="mailto:support@folcommerce.com">support@folcommerce.com</a></p>
+                <p>Phone: <a href="tel:+2349131109245">+234 913 110 9245</a></p>
+                <p>Address: Osun State, Nigeria</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://x.com"><i class="fab fa-twitter"></i></a>
+                    <a href="https://github.com/Ajao-Victor/CodeAlpha_folConnect"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/victor-ajao-970771253"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
-            <!-- Copyright Section -->
-            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.2); font-size: 14px; opacity: 0.8;">
-                © <script>document.write(new Date().getFullYear());</script> Folcommerce. All rights reserved.
-            </div>
-            <style>
-                footer a:hover { color: #1e90ff; }
-                @media screen and (max-width: 768px) {
-                    footer > div {
-                        flex-direction: column;
-                        align-items: center;
-                        text-align: center;
-                    }
-                    footer > div > div {
-                        margin-bottom: 20px;
-                    }
-                }
-            </style>
-        </footer>
+        </div>
+        <div class="footer-bottom">
+            <p>© <script>document.write(new Date().getFullYear());</script> Folcommerce. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        const token = localStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'index.html';
+        }
 
-        <script>
-const token = localStorage.getItem('token');
-    if (!token) {
-      window.location.href = 'index.html';
-    }
+        let allProducts = [];
 
-            let allProducts = [];
-            const userId = 1;
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const nav = document.querySelector('.nav');
+            const hamburger = document.getElementById('hamburger');
+            navLinks.classList.toggle('active');
+            nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
+        }
 
-            function toggleMenu() {
-                const navLinks = document.getElementById('nav-links');
-                const nav = document.querySelector('.nav');
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    nav.classList.remove('active');
-                    navLinks.style.display = 'none';
-                } else {
-                    navLinks.classList.add('active');
-                    nav.classList.add('active');
-                    navLinks.style.display = 'flex';
-                }
+        window.addEventListener('resize', () => {
+            const navLinks = document.getElementById('nav-links');
+            const hamburger = document.getElementById('hamburger');
+            const nav = document.querySelector('.nav');
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove('active');
+                nav.classList.remove('active');
+                hamburger.classList.remove('active');
+                navLinks.style.display = 'flex';
+                hamburger.style.display = 'none';
+            } else {
+                navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
+                hamburger.style.display = 'block';
             }
+        });
 
-            window.addEventListener('resize', () => {
-                const navLinks = document.getElementById('nav-links');
-                const hamburger = document.getElementById('hamburger');
-                const nav = document.querySelector('.nav');
-                if (window.innerWidth > 768) {
-                    navLinks.classList.remove('active');
-                    nav.classList.remove('active');
-                    navLinks.style.display = 'flex';
-                    hamburger.style.display = 'none';
-                } else {
-                    navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
-                    hamburger.style.display = 'block';
-                }
+        window.dispatchEvent(new Event('resize'));
+
+        function displayProducts(products) {
+            const container = document.getElementById('products');
+            container.innerHTML = '';
+            if (products.length === 0) {
+                container.innerHTML = '<p class="no-products">No products found.</p>';
+                return;
+            }
+            products.forEach((product, index) => {
+                const div = document.createElement('div');
+                div.className = 'product-card';
+                div.setAttribute('data-animate', 'product');
+                div.onclick = () => window.location.href = `productDetail.html?id=${product.id}`;
+                div.innerHTML = `
+                    <div class="image-wrapper">
+                        <img src="${product.image_url}" alt="${product.title}" loading="lazy" onerror="this.src='/images/product-fallback.jpg'" onload="this.parentElement.classList.add('loaded')">
+                        <div class="image-loading">Loading...</div>
+                    </div>
+                    <h3>${product.title}</h3>
+                    <p>₦${product.price.toLocaleString()}</p>
+                    <button onclick="event.stopPropagation(); addToCart(${product.id})">Add to Cart</button>
+                `;
+                container.appendChild(div);
             });
 
-            window.dispatchEvent(new Event('resize'));
+            // GSAP Animations for product cards
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.utils.toArray('[data-animate="product"]').forEach((element, i) => {
+                    gsap.fromTo(element, {
+                        opacity: 0,
+                        y: 50,
+                        scale: 0.95
+                    }, {
+                        scrollTrigger: {
+                            trigger: element,
+                            start: 'top 90%',
+                            toggleActions: 'play none none none'
+                        },
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.8,
+                        delay: i * 0.15,
+                        ease: 'power3.out',
+                        onStart: () => console.log(`Animating product card ${i}`)
+                    });
+                });
+            }
+        }
 
-            function displayProducts(products) {
-    const container = document.getElementById('products');
-    container.innerHTML = '';
-    if (products.length === 0) {
-        container.innerHTML = '<p>No products found.</p>';
-        return;
-    }
-    products.forEach(product => {
-        const div = document.createElement('div');
-        div.className = 'product-card';
-        div.onclick = () => window.location.href = `productDetail.html?id=${product.id}`;
-        div.innerHTML = `
-            <img src="${product.image_url}" alt="${product.title}">
-            <h3>${product.title}</h3>
-            <p>₦${product.price.toLocaleString()}</p>
-            <button onclick="event.stopPropagation(); addToCart(${product.id})">Add to Cart</button>
-        `;
-        container.appendChild(div);
-    });
-}
+        // Placeholder data for testing visibility
+        const placeholderProducts = [
+            { id: 1, title: "Modern Sofa", price: 150000, image_url: "https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg" },
+            { id: 2, title: "Circuit Board", price: 25000, image_url: "https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg" }
+        ];
 
-            fetch('http://localhost:3000/products')
+        fetch('http://localhost:3000/products')
+            .then(res => {
+                if (!res.ok) {
+                    console.error(`HTTP error! status: ${res.status}`);
+                    throw new Error('Failed to fetch products');
+                }
+                return res.json();
+            })
+            .then(products => {
+                console.log('Fetched products:', products);
+                allProducts = products;
+                displayProducts(products.length ? products : placeholderProducts);
+            })
+            .catch(error => {
+                console.error('Error fetching products:', error);
+                document.getElementById('products').innerHTML = '<p class="no-products">Error loading products. Please try again later.</p>';
+                displayProducts(placeholderProducts); // Fallback to placeholders
+            });
+
+        document.getElementById('search-button').addEventListener('click', () => {
+            const searchTerm = document.getElementById('search-input').value.trim().toLowerCase();
+            const filteredProducts = allProducts.filter(product =>
+                product.title.toLowerCase().includes(searchTerm)
+            );
+            console.log('Filtered products:', filteredProducts);
+            displayProducts(filteredProducts.length ? filteredProducts : placeholderProducts);
+        });
+
+        function addToCart(productId, quantity = 1) {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                alert('Please sign in to add items to cart.');
+                window.location.href = 'registration.html';
+                return;
+            }
+            fetch('http://localhost:3000/cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ productId, quantity })
+            })
                 .then(res => {
-                    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+                    if (!res.ok) throw new Error(`Failed to add to cart: ${res.status}`);
                     return res.json();
                 })
-                .then(products => {
-                    allProducts = products;
-                    displayProducts(products);
-                })
+                .then(() => alert('Product added to cart!'))
                 .catch(error => {
-                    console.error('Error fetching products:', error);
-                    document.getElementById('products').innerHTML = '<p>Error loading products.</p>';
+                    console.error('Error adding to cart:', error);
+                    alert('Failed to add to cart. Please try again.');
                 });
+        }
 
-            document.getElementById('search-button').addEventListener('click', () => {
-                const searchTerm = document.getElementById('search-input').value.trim().toLowerCase();
-                const filteredProducts = allProducts.filter(product =>
-                    product.title.toLowerCase().includes(searchTerm)
-                );
-                displayProducts(filteredProducts);
+        function logout() {
+            localStorage.removeItem('token');
+        }
+
+        // Fallback CSS Animation for No-JS
+        const style = document.createElement('style');
+        style.textContent = `
+            .product-card {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+            .product-card.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .no-products {
+                font-size: 18px;
+                color: var(--text);
+                text-align: center;
+                padding: 20px;
+                background: var(--white);
+                border-radius: 8px;
+                box-shadow: var(--shadow);
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Ensure visibility on load
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.product-card').forEach((item, i) => {
+                setTimeout(() => item.classList.add('visible'), i * 200);
             });
-
-
-            function addToCart(productId, quantity = 1) {
-    const token = localStorage.getItem('token');
-    if (!token) {
-        alert('Please sign in to add items to cart.');
-        window.location.href = 'registration.html';
-        return;
-    }
-    fetch('http://localhost:3000/cart', {
-        method: 'POST',
-        headers: { 
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ productId, quantity })
-    })
-        .then(res => {
-            if (!res.ok) throw new Error(`Failed to add to cart: ${res.status}`);
-            return res.json();
-        })
-        .then(() => alert('Product added to cart!'))
-        .catch(error => {
-            console.error('Error adding to cart:', error);
-            alert('Failed to add to cart. Please try again.');
         });
-}
-
-function logout() {
-    localStorage.removeItem("token");
-}
-        </script>
-    </div>
+    </script>
 </body>
 </html>

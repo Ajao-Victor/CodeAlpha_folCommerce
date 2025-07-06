@@ -1,13 +1,14 @@
-
 :root {
-    --primary: #228838;
-    --primary-dark: #1e7330;
-    --accent: #1e90ff;
-    --background: #f4f4f9;
-    --text: #333;
+    --primary: #FF5733; /* Vibrant coral */
+    --primary-dark: #C70039; /* Deep orange */
+    --accent: #1e90ff; /* Blue contrast */
+    --secondary: #ff6f61; /* Coral for CTAs */
+    --background: #f8fafc;
+    --content-background: #ffffff; /* White for content */
+    --text: #2d3748;
     --white: #fff;
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    --transition: all 0.3s ease;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --transition: all 0.4s ease;
 }
 
 * {
@@ -20,13 +21,14 @@ body {
     font-family: 'Poppins', 'Arial', sans-serif;
     background-color: var(--background);
     color: var(--text);
-    line-height: 1.6;
+    line-height: 1.7;
+    overflow-x: hidden;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 24px;
 }
 
 .nav {
@@ -35,7 +37,7 @@ body {
     top: 0;
     z-index: 1000;
     box-shadow: var(--shadow);
-    padding: 15px 0;
+    padding: 16px 0;
 }
 
 .nav nav {
@@ -45,13 +47,14 @@ body {
 }
 
 .logo-section .logo {
-    height: 50px;
+    height: 64px;
     width: auto;
     transition: var(--transition);
 }
 
 .logo-section .logo:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
+    filter: brightness(1.15);
 }
 
 #hamburger {
@@ -60,43 +63,120 @@ body {
 }
 
 #hamburger div {
-    width: 30px;
-    height: 3px;
+    width: 34px;
+    height: 4px;
     background-color: var(--white);
-    margin: 6px 0;
+    margin: 7px 0;
     transition: var(--transition);
+}
+
+#hamburger.active div:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+#hamburger.active div:nth-child(2) {
+    opacity: 0;
+}
+
+#hamburger.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
 }
 
 #nav-links {
     list-style: none;
     display: flex;
-    gap: 25px;
+    gap: 32px;
     align-items: center;
 }
 
 #nav-links li a {
     color: var(--white);
     text-decoration: none;
-    font-size: 16px;
-    padding: 10px 15px;
+    font-size: 18px;
+    padding: 12px 20px;
     transition: var(--transition);
-    border-radius: 5px;
+    border-radius: 6px;
+    position: relative;
 }
 
-#nav-links li a:hover {
+#nav-links li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
     background-color: var(--accent);
+    transition: var(--transition);
+}
+
+#nav-links li a:hover::after, #nav-links li a.active::after {
+    width: 100%;
+}
+
+.nav-cta {
+    background: var(--secondary);
+    padding: 12px 28px !important;
+    border-radius: 12px !important;
+    font-weight: 700;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-cta:hover {
+    background: #e55a50;
+    transform: translateY(-3px);
+}
+
+.content {
+    padding: 40px 24px;
+    background: var(--content-background);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin: 24px;
+    min-height: calc(100vh - 80px);
+}
+
+.hero {
+    position: relative;
+    padding: 80px 24px;
+    background: linear-gradient(135deg, rgba(255, 87, 51, 0.9), rgba(199, 0, 57, 0.9)), url('https://images.pexels.com/photos/5632371/pexels-photo-5632371.jpeg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    margin-bottom: 48px;
+    text-align: center;
     color: var(--white);
 }
 
-/* Checkout Section */
+.hero-image {
+    display: none; /* Hidden as background image is used */
+}
+
+.hero-text h1 {
+    font-size: 48px;
+    margin-bottom: 16px;
+    color: var(--white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-text p {
+    font-size: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--white);
+    opacity: 0.9;
+}
+
 .checkout-section {
-    padding: 80px 20px;
-    background: var(--background);
+    padding: 48px 24px;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     text-align: center;
 }
 
 .checkout-section h2 {
-    font-size: 36px;
+    font-size: 32px;
     color: var(--primary);
     margin-bottom: 20px;
 }
@@ -109,15 +189,17 @@ body {
 #success a {
     color: var(--accent);
     text-decoration: none;
+    transition: var(--transition);
 }
 
 #success a:hover {
+    color: var(--secondary);
     text-decoration: underline;
 }
 
 #checkout-content p {
     font-size: 18px;
-    color: #666;
+    color: var(--text);
     margin-bottom: 30px;
     max-width: 600px;
     margin-left: auto;
@@ -126,7 +208,7 @@ body {
 
 .cta-button {
     padding: 15px 30px;
-    background-color: var(--accent);
+    background-color: var(--secondary);
     color: var(--white);
     border: none;
     border-radius: 8px;
@@ -134,46 +216,42 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .cta-button:hover {
-    background-color: #166bb3;
-    transform: translateY(-2px);
+    background-color: var(--accent);
+    transform: scale(1.05);
 }
 
-/* Footer */
 footer {
     background: var(--primary-dark);
     color: var(--white);
-    padding: 60px 20px 20px;
+    padding: 80px 24px 24px;
 }
 
 .footer-content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 32px;
 }
 
 .footer-section {
     flex: 1;
-    min-width: 200px;
+    min-width: 240px;
 }
 
 .footer-section h3 {
-    font-size: 20px;
+    font-size: 24px;
     color: var(--accent);
     margin-bottom: 20px;
 }
 
 .footer-section p, .footer-section ul li a {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--white);
     text-decoration: none;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     display: block;
 }
 
@@ -182,7 +260,8 @@ footer {
 }
 
 .footer-section a:hover {
-    color: var(--accent);
+    color: var(--secondary);
+    transform: translateX(5px);
 }
 
 .social-links {
@@ -192,25 +271,34 @@ footer {
 
 .social-links a {
     color: var(--white);
-    font-size: 24px;
+    font-size: 30px;
     transition: var(--transition);
 }
 
 .social-links a:hover {
-    color: var(--accent);
-    transform: scale(1.2);
+    color: var(--secondary);
+    transform: scale(1.3);
 }
 
 .footer-bottom {
     text-align: center;
-    margin-top: 40px;
-    padding-top: 20px;
+    margin-top: 48px;
+    padding-top: 24px;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 14px;
-    opacity: 0.8;
+    font-size: 16px;
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .hero-text h1 {
+        font-size: 36px;
+    }
+
+    .hero-text p {
+        font-size: 18px;
+    }
+}
+
 @media (max-width: 768px) {
     .nav nav {
         flex-direction: column;
@@ -225,7 +313,7 @@ footer {
         display: none;
         flex-direction: column;
         width: 100%;
-        padding: 20px;
+        padding: 24px;
         background: var(--primary-dark);
     }
 
@@ -234,25 +322,52 @@ footer {
     }
 
     #nav-links li {
-        margin: 10px 0;
+        margin: 14px 0;
+    }
+
+    .content {
+        margin: 16px;
+        padding: 16px;
+    }
+
+    .hero {
+        padding: 60px 16px;
+    }
+
+    .hero-text h1 {
+        font-size: 32px;
+    }
+
+    .hero-text p {
+        font-size: 16px;
     }
 
     .checkout-section h2 {
         font-size: 28px;
     }
-
-    .footer-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .footer-section {
-        margin-bottom: 20px;
-    }
 }
 
 @media (max-width: 480px) {
+    .content {
+        padding: 12px;
+    }
+
+    .hero {
+        padding: 40px 12px;
+    }
+
+    .hero-text h1 {
+        font-size: 28px;
+    }
+
+    .hero-text p {
+        font-size: 14px;
+    }
+
+    .checkout-section h2 {
+        font-size: 24px;
+    }
+
     .cta-button {
         padding: 12px 20px;
         font-size: 16px;

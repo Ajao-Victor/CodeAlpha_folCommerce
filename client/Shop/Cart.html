@@ -7,8 +7,8 @@
     <link rel="icon" type="image/png" href="../logo.png">
     <link rel="stylesheet" href="../cssFiles/cart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="../cssFiles/cart.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
     <header class="nav">
@@ -20,44 +20,46 @@
                 <div></div><div></div><div></div>
             </div>
             <ul id="nav-links">
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./about.html">About</a></li>
-                <li><a href="./services.html">Services</a></li>
-                <li><a href="./cart.html"><i class="fas fa-shopping-cart"></i> Cart</a></li>
-                <li><a href="./contact.html">Contact</a></li>
+                <!-- <li><a href="./index.html" class="smooth-scroll">Home</a></li> -->
+                <li><a href="./about.html" class="smooth-scroll">About</a></li>
+                <li><a href="./services.html" class="smooth-scroll">Services</a></li>
+                <!-- <li><a href="./cart.html" class="smooth-scroll"><i class="fas fa-shopping-cart"></i> Cart</a></li> -->
+                <li><a href="./contact.html" class="smooth-scroll">Contact</a></li>
+                <li><a href="./index.html" onclick="logout()" class="nav-cta">Logout</a></li>
             </ul>
         </nav>
     </header>
     <main class="content">
-        <section class="cart-section animate__animated animate__fadeIn">
+        <section class="cart-section">
             <div class="container">
                 <h2>Your Cart</h2>
-                <div id="loading">Loading cart...</div>
-                <div id="cart-content" style="display: none;">
+                <div id="loading" class="loading">Loading cart...</div>
+                <div id="cart-content" class="cart-content">
                     <div id="cart-items" class="cart-items"></div>
-                    <div class="cart-summary">
+                    <div id="cart-summary" class="cart-summary" data-animate="summary">
                         <h3>Order Summary</h3>
                         <p>Total: <span id="cart-total">₦0</span></p>
                         <a href="./checkout.html" class="cta-button">Proceed to Checkout</a>
                     </div>
                 </div>
-                <p id="cart-empty" style="display: none;">Your cart is empty. <a href="./index.html">Shop now!</a></p>
-                <p id="error" style="color: #d9534f; text-align: center; display: none;"></p>
+                <p id="cart-empty" class="cart-empty">Your cart is empty. <a href="./index.html" class="shop-now">Shop now!</a></p>
+                <p id="error" class="error"></p>
             </div>
         </section>
     </main>
-    <footer>
+    <footer id="contact">
         <div class="container footer-content">
             <div class="footer-section">
                 <h3>About Folcommerce</h3>
-                <p>Folcommerce is your trusted e-commerce platform, delivering quality products and exceptional service across Nigeria.</p>
+                <p>Folcommerce is your one-stop e-commerce platform, offering quality products and exceptional service to make shopping effortless and enjoyable.</p>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="./index.html">Home</a></li>
-                    <li><a href="./about.html">About</a></li>
-                    <li><a href="./contact.html">Contact</a></li>
+                    <li><a href="./index.html" class="smooth-scroll">Home</a></li>
+                    <li><a href="./about.html" class="smooth-scroll">About</a></li>
+                    <li><a href="./services.html" class="smooth-scroll">Services</a></li>
+                    <li><a href="./contact.html" class="smooth-scroll">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -70,25 +72,28 @@
                 <h3>Follow Us</h3>
                 <div class="social-links">
                     <a href="https://x.com"><i class="fab fa-twitter"></i></a>
-                    <a href="https://github.com"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Ajao-Victor/CodeAlpha_folConnect"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/victor-ajao-970771253"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© <script>document.write(new Date().getYear());</script> Folcommerce. All rights reserved.</p>
+            <p>© <script>document.write(new Date().getFullYear());</script> Folcommerce. All rights reserved.</p>
         </div>
     </footer>
     <script>
         const token = localStorage.getItem('token');
-    if (!token) {
-      window.location.href = 'index.html';
-    }
+        if (!token) {
+            window.location.href = 'index.html';
+        }
+
         function toggleMenu() {
             const navLinks = document.getElementById('nav-links');
             const nav = document.querySelector('.nav');
+            const hamburger = document.getElementById('hamburger');
             navLinks.classList.toggle('active');
             nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
             navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
         }
 
@@ -98,6 +103,7 @@
             if (window.innerWidth > 768) {
                 navLinks.classList.remove('active');
                 nav.classList.remove('active');
+                hamburger.classList.remove('active');
                 navLinks.style.display = 'flex';
                 hamburger.style.display = 'none';
             } else {
@@ -113,6 +119,23 @@
                 window.location.href = 'registration.html';
                 return;
             }
+            // Placeholder data for testing
+            const placeholderItems = [
+                {
+                    id: 1,
+                    title: "Modern Sofa",
+                    price: 150000,
+                    quantity: 1,
+                    image_url: "https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg"
+                },
+                {
+                    id: 2,
+                    title: "Circuit Board",
+                    price: 25000,
+                    quantity: 2,
+                    image_url: "https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg"
+                }
+            ];
             fetch('http://localhost:3000/cartDisplay', {
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -123,13 +146,15 @@
                     return res.json();
                 })
                 .then(items => {
-                    displayCart(items);
+                    console.log('Fetched cart items:', items);
+                    displayCart(items.length ? items : placeholderItems);
                     document.getElementById('loading').style.display = 'none';
                     document.getElementById('cart-content').style.display = 'block';
                 })
                 .catch(error => {
                     console.error('Error fetching cart:', error);
-                    showError('Failed to load cart.');
+                    showError('Failed to load cart. Displaying placeholder.');
+                    displayCart(placeholderItems);
                 });
         }
 
@@ -142,17 +167,22 @@
             if (items.length === 0) {
                 cartEmpty.style.display = 'block';
                 cartTotal.textContent = '₦0';
+                document.getElementById('cart-content').style.display = 'none';
                 return;
             }
 
             cartEmpty.style.display = 'none';
             let total = 0;
 
-            items.forEach(item => {
+            items.forEach((item, index) => {
                 const itemElement = document.createElement('div');
                 itemElement.className = 'cart-item';
+                itemElement.setAttribute('data-animate', 'cart-item');
                 itemElement.innerHTML = `
-                    <img src="${item.image_url}" alt="${item.title}">
+                    <div class="image-wrapper">
+                        <img src="${item.image_url}" alt="${item.title}" loading="lazy" onerror="this.src='/images/product-fallback.jpg'" onload="this.parentElement.classList.add('loaded')">
+                        <div class="image-loading">Loading...</div>
+                    </div>
                     <div class="cart-item-info">
                         <h3>${item.title}</h3>
                         <p>₦${item.price.toLocaleString()}</p>
@@ -169,6 +199,46 @@
             });
 
             cartTotal.textContent = `₦${total.toLocaleString()}`;
+
+            // GSAP Animations
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.utils.toArray('[data-animate="cart-item"]').forEach((element, i) => {
+                    gsap.fromTo(element, {
+                        opacity: 0,
+                        y: 50,
+                        scale: 0.95
+                    }, {
+                        scrollTrigger: {
+                            trigger: element,
+                            start: 'top 85%',
+                            toggleActions: 'play none none none'
+                        },
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.8,
+                        delay: i * 0.15,
+                        ease: 'power3.out',
+                        onStart: () => console.log(`Animating cart item ${i}`)
+                    });
+                });
+                gsap.fromTo('[data-animate="summary"]', {
+                    opacity: 0,
+                    y: 50
+                }, {
+                    scrollTrigger: {
+                        trigger: '[data-animate="summary"]',
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: 0.3,
+                    ease: 'power3.out',
+                    onStart: () => console.log('Animating cart summary')
+                });
+            }
         }
 
         function updateQuantity(productId, quantity) {
@@ -220,7 +290,41 @@
             document.getElementById('loading').style.display = 'none';
             document.getElementById('error').textContent = message;
             document.getElementById('error').style.display = 'block';
+            document.getElementById('cart-content').style.display = 'none';
         }
+
+        function logout() {
+            localStorage.removeItem('token');
+        }
+
+        // Fallback CSS Animation for No-JS
+        const style = document.createElement('style');
+        style.textContent = `
+            .cart-item, .cart-summary {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+            .cart-item.visible, .cart-summary.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .cart-empty, .error {
+                opacity: 0;
+                transition: opacity 0.5s ease;
+            }
+            .cart-empty.visible, .error.visible {
+                opacity: 1;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Ensure visibility on load
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.cart-item, .cart-summary, .cart-empty, .error').forEach((item, i) => {
+                setTimeout(() => item.classList.add('visible'), i * 200);
+            });
+        });
 
         fetchCart();
         window.dispatchEvent(new Event('resize'));

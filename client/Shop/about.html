@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Folcommerce</title>
+    <title>Folcommerce - About</title>
     <link rel="icon" type="image/png" href="../logo.png">
     <link rel="stylesheet" href="../cssFiles/about.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <div class="nav">
-        <nav>
+    <header class="nav">
+        <nav class="container">
             <div class="logo-section">
                 <img src="../logo.png" alt="Folcommerce Logo" class="logo">
             </div>
@@ -18,50 +20,57 @@
                 <div></div><div></div><div></div>
             </div>
             <ul id="nav-links">
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./about.html" class="active">About</a></li>
-                <li><a href="./products.html">Products</a></li>
-                <li><a href="./registration.html">Sign In / Sign Up</a></li>
+                <li><a href="./index.html" class="smooth-scroll">Home</a></li>
+                <!-- <li><a href="./about.html" class="smooth-scroll active">About</a></li> -->
+                <li><a href="./shop.html" class="smooth-scroll">Products</a></li>
+                <li><a href="./cart.html" class="smooth-scroll"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+                <li><a href="./contact.html" class="smooth-scroll">Contact</a></li>
+                <li><a href="./index.html" onclick="logout()" class="nav-cta">Logout</a></li>
             </ul>
         </nav>
-    </div>
+    </header>
     <main class="content">
-        <section class="hero">
-            <h1>About Folcommerce</h1>
-            <p>Discover how Folcommerce transforms your shopping experience with quality products and seamless service.</p>
+        <section class="hero" data-animate="hero">
+            <div class="hero-image">
+                <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg" alt="E-commerce Shopping" loading="lazy" onerror="this.src='/images/hero-fallback.jpg'">
+            </div>
+            <div class="hero-text">
+                <h1>About Folcommerce</h1>
+                <p>Transforming your shopping experience with quality products and seamless service across Nigeria.</p>
+            </div>
         </section>
-        <section class="about-section">
-            <h2>What We Do</h2>
-            <p>Folcommerce is a modern e-commerce platform designed to make online shopping effortless and enjoyable. We offer a wide range of high-quality products, from electronics to fashion, all in one place. Our mission is to connect customers with trusted sellers, ensuring every purchase is secure, reliable, and tailored to your needs.</p>
+        <section class="about-section" data-animate="about">
+            <h2>Our Mission</h2>
+            <p>Folcommerce is your trusted e-commerce platform, dedicated to making online shopping effortless, secure, and enjoyable. We bring together a diverse range of high-quality products—from electronics to fashion—connecting customers with trusted sellers across Nigeria. Our mission is to empower every shopper with convenience, reliability, and exceptional value.</p>
         </section>
-        <section class="features-section">
-            <h2>How We Meet Your Needs</h2>
+        <section class="features-section" data-animate="features">
+            <h2>Why Choose Us</h2>
             <div class="features-grid">
-                <div class="feature">
+                <div class="feature" data-animate="feature">
                     <i class="fas fa-shopping-cart"></i>
                     <h3>Wide Product Selection</h3>
-                    <p>Browse thousands of products across categories, curated to meet diverse tastes and preferences.</p>
+                    <p>Explore thousands of products across categories, curated to suit every taste and lifestyle.</p>
                 </div>
-                <div class="feature">
+                <div class="feature" data-animate="feature">
                     <i class="fas fa-shield-alt"></i>
                     <h3>Secure Shopping</h3>
-                    <p>Shop with confidence using our secure payment systems and user authentication protocols.</p>
+                    <p>Shop with peace of mind using our robust payment systems and authentication protocols.</p>
                 </div>
-                <div class="feature">
+                <div class="feature" data-animate="feature">
                     <i class="fas fa-search"></i>
-                    <h3>Easy Search & Navigation</h3>
-                    <p>Find what you need quickly with our intuitive search and user-friendly interface.</p>
+                    <h3>Easy Navigation</h3>
+                    <p>Find your perfect product quickly with our intuitive search and user-friendly interface.</p>
                 </div>
-                <div class="feature">
+                <div class="feature" data-animate="feature">
                     <i class="fas fa-headset"></i>
-                    <h3>Exceptional Support</h3>
-                    <p>Our dedicated support team is here to assist you at every step of your shopping journey.</p>
+                    <h3>24/7 Support</h3>
+                    <p>Our dedicated team is here to assist you at every step of your shopping journey.</p>
                 </div>
             </div>
         </section>
     </main>
-    <footer>
-        <div class="footer-content">
+    <footer id="contact">
+        <div class="container footer-content">
             <div class="footer-section">
                 <h3>About Folcommerce</h3>
                 <p>Folcommerce is your one-stop e-commerce platform, offering quality products and exceptional service to make shopping effortless and enjoyable.</p>
@@ -69,24 +78,25 @@
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="./index.html">Home</a></li>
-                    <li><a href="./about.html">About</a></li>
-                    <li><a href="./products.html">Products</a></li>
-                    <li><a href="./registration.html">Sign In / Sign Up</a></li>
+                    <li><a href="./index.html" class="smooth-scroll">Home</a></li>
+                    <li><a href="./about.html" class="smooth-scroll">About</a></li>
+                    <li><a href="./products.html" class="smooth-scroll">Products</a></li>
+                    <li><a href="./cart.html" class="smooth-scroll">Cart</a></li>
+                    <li><a href="./contact.html" class="smooth-scroll">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Contact Us</h3>
                 <p>Email: <a href="mailto:support@folcommerce.com">support@folcommerce.com</a></p>
                 <p>Phone: <a href="tel:+2349131109245">+234 913 110 9245</a></p>
-                <p>Address: Osun State,  Nigeria</p>
+                <p>Address: Osun State, Nigeria</p>
             </div>
             <div class="footer-section">
                 <h3>Follow Us</h3>
                 <div class="social-links">
                     <a href="https://x.com"><i class="fab fa-twitter"></i></a>
-                    <a href="https://github.com"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/Ajao-Victor/CodeAlpha_folConnect"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/victor-ajao-970771253"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
         </div>
@@ -95,11 +105,18 @@
         </div>
     </footer>
     <script>
+        // const token = localStorage.getItem('token');
+        // if (!token) {
+        //     window.location.href = 'index.html';
+        // }
+
         function toggleMenu() {
             const navLinks = document.getElementById('nav-links');
             const nav = document.querySelector('.nav');
+            const hamburger = document.getElementById('hamburger');
             navLinks.classList.toggle('active');
             nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
             navLinks.style.display = navLinks.classList.contains('active') ? 'flex' : 'none';
         }
 
@@ -109,6 +126,7 @@
             if (window.innerWidth > 768) {
                 navLinks.classList.remove('active');
                 nav.classList.remove('active');
+                hamburger.classList.remove('active');
                 navLinks.style.display = 'flex';
                 hamburger.style.display = 'none';
             } else {
@@ -116,6 +134,91 @@
                 hamburger.style.display = 'block';
             }
         });
+
+        // GSAP Animations
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.fromTo('[data-animate="hero"]', {
+                opacity: 0,
+                y: 50,
+                scale: 0.95
+            }, {
+                scrollTrigger: {
+                    trigger: '[data-animate="hero"]',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.8,
+                ease: 'power3.out',
+                onStart: () => console.log('Animating hero section')
+            });
+
+            gsap.fromTo('[data-animate="about"]', {
+                opacity: 0,
+                y: 50
+            }, {
+                scrollTrigger: {
+                    trigger: '[data-animate="about"]',
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: 0.2,
+                ease: 'power3.out',
+                onStart: () => console.log('Animating about section')
+            });
+
+            gsap.utils.toArray('[data-animate="feature"]').forEach((element, i) => {
+                gsap.fromTo(element, {
+                    opacity: 0,
+                    y: 50,
+                    scale: 0.95
+                }, {
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    },
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.8,
+                    delay: i * 0.15,
+                    ease: 'power3.out',
+                    onStart: () => console.log(`Animating feature ${i}`)
+                });
+            });
+        }
+
+        // Fallback CSS Animation for No-JS
+        const style = document.createElement('style');
+        style.textContent = `
+            [data-animate="hero"], [data-animate="about"], [data-animate="feature"] {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+            }
+            [data-animate="hero"].visible, [data-animate="about"].visible, [data-animate="feature"].visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Ensure visibility on load
+        window.addEventListener('load', () => {
+            document.querySelectorAll('[data-animate="hero"], [data-animate="about"], [data-animate="feature"]').forEach((item, i) => {
+                setTimeout(() => item.classList.add('visible'), i * 200);
+            });
+        });
+
+        function logout() {
+            localStorage.removeItem('token');
+        }
 
         window.dispatchEvent(new Event('resize'));
     </script>
