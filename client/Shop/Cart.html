@@ -136,7 +136,7 @@
                     image_url: "https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg"
                 }
             ];
-            fetch('http://localhost:3000/cartDisplay', {
+            fetch('https://folcommerce-backend.onrender.com/cartDisplay', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -248,7 +248,7 @@
                 removeFromCart(productId);
                 return;
             }
-            fetch(`http://localhost:3000/cart/${productId}`, {
+            fetch(`https://folcommerce-backend.onrender.com/cart/${productId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
