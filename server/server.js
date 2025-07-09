@@ -22,19 +22,19 @@ const pool = new Pool({
     rejectUnauthorized: false
   }
 });
-// const corsOption = {
-//   origin : 'https://folcommerce.onrender.com/'
-// }
+const corsOption = {
+  origin : '*'
+}
 
-const allowedOrigin = 'https://folcommerce.onrender.com';
+// const allowedOrigin = 'https://folcommerce.onrender.com';
 
-app.use(cors({
-  origin: allowedOrigin,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));
+// app.use(cors({
+//   origin: allowedOrigin,
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   credentials: true
+// }));
 app.use(express.json());
-// app.use(cors(corsOption));
+app.use(cors(corsOption));
 app.use(express.static('../client'));
 
 async function createTables() {
