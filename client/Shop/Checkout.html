@@ -133,7 +133,7 @@
         function confirmCheckout() {
             if (!checkAuth()) return;
             const token = localStorage.getItem('token');
-            fetch('http://localhost:3000/checkout', {
+            fetch('https://folcommerce-backend.onrender.com/checkout', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`

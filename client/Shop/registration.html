@@ -46,7 +46,7 @@
       const endpoint = isSignIn ? '/signin' : '/signup';
 
       try {
-        const response = await fetch(`http://localhost:3000${endpoint}`, {
+        const response = await fetch(`https://folcommerce-backend.onrender.com${endpoint}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, password })

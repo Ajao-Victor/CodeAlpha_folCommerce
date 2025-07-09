@@ -269,7 +269,7 @@
 
         function removeFromCart(productId) {
             const token = localStorage.getItem('token');
-            fetch(`http://localhost:3000/cart/${productId}`, {
+            fetch(`https://folcommerce-backend.onrender.com/cart/${productId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
