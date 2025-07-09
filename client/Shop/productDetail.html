@@ -137,7 +137,7 @@
                 description: "A stylish modern sofa for your living room.",
                 image_url: "https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg"
             };
-            fetch(`https://folcommerce-backend.onrender.com//products/${productId}`)
+            fetch(`https://folcommerce-backend.onrender.com/products/${productId}`)
                 .then(res => {
                     if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
                     return res.json();
