@@ -120,22 +120,23 @@
                 return;
             }
             // Placeholder data for testing
-            const placeholderItems = [
-                {
-                    id: 1,
-                    title: "Modern Sofa",
-                    price: 150000,
-                    quantity: 1,
-                    image_url: "https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg"
-                },
-                {
-                    id: 2,
-                    title: "Circuit Board",
-                    price: 25000,
-                    quantity: 2,
-                    image_url: "https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg"
-                }
-            ];
+            const placeholderItems = 'Cart empty.'
+            // [
+            //     {
+            //         id: 1,
+            //         title: "Modern Sofa",
+            //         price: 150000,
+            //         quantity: 1,
+            //         image_url: "https://images.pexels.com/photos/1643384/pexels-photo-1643384.jpeg"
+            //     },
+            //     {
+            //         id: 2,
+            //         title: "Circuit Board",
+            //         price: 25000,
+            //         quantity: 2,
+            //         image_url: "https://images.pexels.com/photos/163100/circuit-circuit-board-resistor-computer-163100.jpeg"
+            //     }
+            // ];
             fetch('https://folcommerce-backend.onrender.com/cartDisplay', {
                 headers: {
                     'Authorization': `Bearer ${token}`
