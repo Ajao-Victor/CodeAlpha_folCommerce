@@ -9,15 +9,21 @@ require('dotenv').config();
 const app = express();
 const SECRET = process.env.SECRET;
 
+// const pool = new Pool({
+//     host: process.env.DB_HOST,
+//     port: parseInt(process.env.DB_PORT),
+//     user: process.env.DB_USER,
+//     password: process.env.DB_PASSWORD,
+//     database: process.env.DB_NAME,
+// });
 const pool = new Pool({
-    host: process.env.DB_HOST,
-    port: parseInt(process.env.DB_PORT),
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 const corsOption = {
-  origin : '*'
+  origin : 'https://folcommerce.onrender.com/'
 }
 
 app.use(express.json());
