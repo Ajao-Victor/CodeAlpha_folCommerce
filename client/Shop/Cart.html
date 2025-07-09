@@ -120,7 +120,7 @@
                 return;
             }
             // Placeholder data for testing
-            const placeholderItems = 'Cart empty.'
+            // const placeholderItems = 'Cart empty.'
             // [
             //     {
             //         id: 1,
@@ -154,8 +154,8 @@
                 })
                 .catch(error => {
                     console.error('Error fetching cart:', error);
-                    showError('Failed to load cart. Displaying placeholder.');
-                    displayCart(placeholderItems);
+                    showError('empty cart');
+                    // displayCart(placeholderItems);
                 });
         }
 
